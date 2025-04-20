@@ -23,12 +23,43 @@ Enter the code for admin.py and models.py
 Execute Django admin and create details for 10 books
 
 ## PROGRAM
+```
+admin.py
 
+from django.contrib import admin
+from .models import BankLoan, BankLoanAdmin
+
+
+if not admin.site.is_registered(BankLoan):
+    admin.site.register(BankLoan, BankLoanAdmin)
+
+
+models.py
+
+from django.db import models
+from django.contrib import admin
+class BankLoan(models.Model):
+    loan_id = models.IntegerField(primary_key=True)
+    loan_type = models.CharField(max_length=30)
+    loan_amt = models.IntegerField()
+    cust_name = models.CharField(max_length=30)
+    cust_acno = models.IntegerField()
+
+    def __str__(self):
+        return f"Loan ID: {self.loan_id}, Customer: {self.cust_name}"
+
+class BankLoanAdmin(admin.ModelAdmin):
+    list_display = ('loan_id', 'loan_type', 'loan_amt', 'cust_name', 'cust_acno')
+admin.site.register(BankLoan, BankLoanAdmin)
+
+
+```
 
 
 ## OUTPUT
+![Screenshot 2025-04-20 170520](https://github.com/user-attachments/assets/36ee15db-c4fd-4eb8-82e1-e7c091ea2149)
 
-Include the screenshot of your admin page.
+
 
 
 ## RESULT
