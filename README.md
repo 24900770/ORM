@@ -23,43 +23,31 @@ Enter the code for admin.py and models.py
 Execute Django admin and create details for 10 books
 
 ## PROGRAM
-```
 admin.py
 
 from django.contrib import admin
-from .models import BankLoan, BankLoanAdmin
+from .models import Movie,MovieAdmin
 
-
-if not admin.site.is_registered(BankLoan):
-    admin.site.register(BankLoan, BankLoanAdmin)
-
+admin.site.register(Movie,MovieAdmin)
 
 models.py
 
 from django.db import models
 from django.contrib import admin
-class BankLoan(models.Model):
-    loan_id = models.IntegerField(primary_key=True)
-    loan_type = models.CharField(max_length=30)
-    loan_amt = models.IntegerField()
-    cust_name = models.CharField(max_length=30)
-    cust_acno = models.IntegerField()
 
-    def __str__(self):
-        return f"Loan ID: {self.loan_id}, Customer: {self.cust_name}"
-
-class BankLoanAdmin(admin.ModelAdmin):
-    list_display = ('loan_id', 'loan_type', 'loan_amt', 'cust_name', 'cust_acno')
-admin.site.register(BankLoan, BankLoanAdmin)
-
-
-```
+class Movie(models.Model):
+    title=models.CharField(max_length=150,primary_key='True')
+    genre=models.CharField(max_length=100)
+    release_date=models.DateField()
+    rating=models.IntegerField()
+    
+class MovieAdmin(admin.ModelAdmin):
+    list_display=('title','genre','release_date','rating')
 
 
 ## OUTPUT
-![Screenshot 2025-04-20 170520](https://github.com/user-attachments/assets/36ee15db-c4fd-4eb8-82e1-e7c091ea2149)
-
-
+![image](https://github.com/user-attachments/assets/2fd40c6d-ec8c-4cb3-b92e-e1292defecb5)
+![image](https://github.com/user-attachments/assets/d3e1db77-ef74-4dcc-9e7a-f40398d83bd0)
 
 
 ## RESULT
